@@ -1,4 +1,5 @@
-import './Counter.css';
+import { useEffect } from 'react';
+import './ItemCount.css';
 
 
 const stock = 5;
@@ -8,7 +9,7 @@ const initial = 0;
 
 
 function ItemCount(stock,initial){
-    const [count,setCount]=0;
+    const [count,setCount]=useEffect(0);
     
     const incrementar = () => {
 

@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar.jsx';
 import CartWidget from './components/CartWidget/CartWidget';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     <div className="App">
       <NavBar />
       <ItemListContainer/>
-      
+      <ItemDetailContainer/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
