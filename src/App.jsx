@@ -5,12 +5,12 @@ import NavBar from './components/NavBar/NavBar.jsx';
 import CartWidget from './components/CartWidget/CartWidget';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
+
 function App() {
   return (
     <div className="App">
       <NavBar />
       <ItemListContainer/>
-      <Counter/>
       
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
