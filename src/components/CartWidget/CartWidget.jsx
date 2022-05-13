@@ -1,13 +1,19 @@
-import React from 'react';
-import './CartWidget.css';
-
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import cartLogo from '../../assets/images/cart.png';
 
 const CartWidget = () => {
-    return (
-        <div className='cart'>
-            <ion-icon name="cart-outline"></ion-icon>
-        </div>
-    );
+
+
+  return (<>
+      {
+      <Link to={"/cart"} style={{ backgroundColor: '#FFECD1', border: 'none', marginLeft: 16, marginRight: 24 }}>
+        <img src={cartLogo} alt="cart" width={32} height={32} />
+        <button style={{ backgroundColor: '#FFECD1', border: 'none'}}>{0}</button>
+      </Link>
+      }
+  </>
+  );
 };
 
 export default CartWidget;

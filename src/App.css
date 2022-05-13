@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+/* Style Items */
+.btn_ver_mas{
+  background-color: #e4c360; 
+}
+
+.cardStyle{
+  border: none;
+  margin-top: 24;
+  margin-bottom: 24;
+  background-color:#F2FEDC ; 
+}
+
+
+/*Count*/
+.btn_item_count{
+  color: #000;
+  border: none;
+  background-color: #e4c360
+}
+
+.img_med{
+  height: 90%;
+  width: auto;
+}
+
+
+.titleStyle {
+  padding-bottom: 24
+}
+.detailsStyle {
+  background-color:#F2FEDC;
+  margin-top: 20px;
+  border-radius: 10%;
+}
+
