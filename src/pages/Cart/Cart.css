@@ -1,0 +1,42 @@
+.cart {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.cart .total-container {
+    padding: 20px;
+}
+
+.cart .total-container p {
+    font-weight: bold;
+    font-size: x-large;
+    color: black;
+}
+
+.cart .total-container button {
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #daa520;
+}
+
+.cart h2 {
+    color: black;
+}
+
+.button-brown {
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #daa520;
+}
+
+.button-brown a {
+    text-decoration: none;
+    color: white;
+}

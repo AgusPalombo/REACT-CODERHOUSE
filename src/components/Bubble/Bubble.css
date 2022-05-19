@@ -1,0 +1,18 @@
+.bubble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #daa520;
+    color: black;
+    width: 1rem;
+    height: 1rem;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.bubble-button:hover {
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+}
