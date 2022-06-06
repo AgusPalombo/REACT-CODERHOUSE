@@ -31,13 +31,13 @@
 .bubble-close {
     height: 0;
     position: relative;
-    bottom: 30%;
+    bottom: 10.75%;
     left: 41%;
 }
 
 .bubble-quantity {
     height: 0;
     position: relative;
-    bottom: 30%;
+    bottom: 10.75%;
     right: 41%;
 }

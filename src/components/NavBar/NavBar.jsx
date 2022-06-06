@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
 import './NavBar.css';
+import {getFirestore, collection, getDocs} from 'firebase/firestore';
+
+function getCategories() {
+    const db = getFirestore();
+
+    const itemsCollection = collection(db, 'items');
+    return getDocs(itemsCollection)
+}
+
 
 function NavBar(props) {
+
+    // const[categories, setCategories] = useState([]);
+
+    // useEffect(()=>{
+    //     getCategories()
+    //         .then(snapshot => {
+    //             const categories = snapshot.docs.map(doc => doc.data().category);
+    //             setCategories(categories);
+    //         })
+    // }, []);
+
     return (
         <div className='nav-container'>
             <Link to='/'>

@@ -4,6 +4,8 @@ import CartItem from '../../components/CartItem/CartItem';
 import CartContext from '../../store/cart-context';
 import './Cart.css';
 
+
+
 function Cart() {
   const cartCtx = useContext(CartContext);
 
@@ -13,7 +15,10 @@ function Cart() {
       {cartCtx.products.length !== 0 ?
         <div className='total-container'>
           <p>Precio total: ${cartCtx.getTotalPrice()}</p>
-          <a href="/" onClick={console.log("Gracias por su compra!")}>Terminar compra</a>
+          <Link to='/checkout'>
+              <a href="/">Terminar compra</a>
+          </Link>
+          
         </div> :
         <>
           <h2>No hay productos en el carrito</h2>
@@ -26,4 +31,5 @@ function Cart() {
   )
 }
 
+ 
 export default Cart

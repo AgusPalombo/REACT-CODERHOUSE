@@ -1,8 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link} from 'react-router-dom';
+import CartContext from '../../store/cart-context';
 import './Item.css';
 
 function Item({ item }) {
+
   return (
     <div className='card'>
         <div className='header'>{ item?.title }</div>
