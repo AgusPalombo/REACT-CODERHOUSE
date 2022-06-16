@@ -1,21 +1,21 @@
-import {useState, useContext} from 'react'
+import React,{useState, useContext} from 'react'
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import {doc,getDoc} from "firebase/firestore";
 import CartContext from '../../store/cart-context'; //PROBLEMA CON ESTE IMPORT
 import { Link } from 'react-router-dom';
+import {Spinner} from 'react-bootstrap';
 import swal from 'sweetalert';
 
 
 
-
-
-const Checkout = () => {
+export const Checkout = () => {
 
   const db = getFirestore();
 
-  const {cart,getTotalPrice} = useContext(CartContext) //EL IMPORT GENERA UN ERROR ACA POR ENDE EN EL .MAP
+  const {getTotalPrice, clear, products} = useContext(CartContext) //EL IMPORT GENERA UN ERROR ACA POR ENDE EN EL .MAP
 
   const[load, setLoad] = useState(false)
+
   const[orderID, setOrderID] = useState(false)
 
   const[buyer, setBuyer] = useState(
@@ -25,7 +25,7 @@ const Checkout = () => {
     Telefono:''
   });
 
-  const{Nombre, Email, Telefono} = buyer
+  const{nombre, email, telefono} = buyer
 
   const handleInputChange = (e)=> {
         setBuyer(({
@@ -40,19 +40,24 @@ const Checkout = () => {
       try {
           const col = collection(db,"Orders")
           const order = await addDoc(col,data)
-          console.log("order",order)
-          console.log("order",order.id)
           setOrderID(order.id)
+          clear()
           setLoad(false)
       } catch (error) {
-          
+          console.log(error)
       }
   }
 
   const handleSubmit = (e) =>{
       
       e.preventDefault()
-      const items = cart.map(e=> {return {id: e.id, title: e.title, price: e.price, quantity: e.quantity} }) //PROBLEMA CON ESTA LINEA
+      const items = products.map(e=> {return {
+        id: e.id,
+        title: e.title,
+        price: e.price, 
+        quantity: e.quantity
+        } }) //PROBLEMA CON ESTA LINEA
+
       const total = getTotalPrice()
       const data = {buyer, items, total}
       console.log("data", data)
@@ -61,55 +66,65 @@ const Checkout = () => {
   }
 
   return (
-    <>
-        <h1>Finalizando compra</h1>
-        <hr />
+    <div>
+        <h2>Finalizando Compra</h2>
         
-        <div>
-            <h4></h4>
-            <br />
-            <form onSubmit={handleSubmit}>
-                <input 
-                    type="text" 
-                    name="Nombre" 
-                    placeholder='Nombre'
-                    value={Nombre}
-                    onChange={handleInputChange}
-                    required
-                />
-                <br />
-                <input 
-                    type="phone" 
-                    name="Telefono" 
-                    placeholder='Telefono'
-                    value={Telefono}
-                    onChange={handleInputChange}
-                    required
-                />
-                <br />
-                <input 
-                    type="email" 
-                    name="Email" 
-                    placeholder='Email'
-                    value={Email}
-                    onChange={handleInputChange}
-                    required
-                />
-                <br /><br />
+            {load ? <Spinner animation='border'></Spinner> :   
+            (!orderID && 
+                <div>
+                    <h6>Completar Datos</h6>
+                    <br />
+                    <form onSubmit={handleSubmit}>
+                        <input 
+                            type="text" 
+                            name="Nombre" 
+                            placeholder='Nombre'
+                            value={nombre}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <br />
+                        <input 
+                            type="phone" 
+                            name="Telefono" 
+                            placeholder='Telefono'
+                            value={telefono}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <br />
+                        <input 
+                            type="email" 
+                            name="Email" 
+                            placeholder='Email'
+                            value={email}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <br /><br />
 
-                <Link to="/" >
-                <input
-                    type="submit" 
-                    value="Finalizar Compra" 
-                    className='btn btn-success'
-                />
-                </Link> 
-                
-                </form>
+                        
+                        <input
+                            type="submit" 
+                            value="Finalizar Compra" 
+                        />
+                        
+                        
+                    </form>
+                </div>)}
+
+            <div>
+                {orderID &&
+                (<div className='d-flex flex-column gap-3 justify-content-center align-items-center'>
+                    <h4 className='text-center text-success'>Compra finalizada con éxito</h4>
+                    <hr width={100} />
+                    <h5 className='text-center'>Su Código de compra es: <span className='text-info'>{orderID}</span></h5>
+                    <h6>¡Gracias por su compra!</h6>
+                    <Link to="/"><button className='btn btn-primary'>Regresar a la tienda</button></Link>
+                </div>)}
             </div>
-    </>
-
-    
+    </div>
+  
   )
 }
 
